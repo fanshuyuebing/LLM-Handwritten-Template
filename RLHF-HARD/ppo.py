@@ -191,7 +191,7 @@ class PPOTrainer:
 
         Returns:
             advantages: [B, T_r]
-            returns:    [B, T_r]  = advantages + values
+            returns:    [B, T_r]  = 原始 advantages + values (标准化之前)
 
         =========================================================================
         [TODO-4] 请实现 _compute_gae()
@@ -203,6 +203,9 @@ class PPOTrainer:
 
         最后对有效位置做归一化:
           A[valid] = (A[valid] - μ) / (σ + ε)
+        σ 使用总体标准差，避免仅一个有效 token 时 NaN；空 batch 应跳过。
+        先构造 returns，再标准化 policy advantage。
+        本练习末尾按终止处理；时间截断 bootstrap 需要单独边界 mask。
         =========================================================================
         """
         raise NotImplementedError("[TODO-4] 请实现 _compute_gae()")

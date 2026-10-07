@@ -123,7 +123,8 @@ class DPOTrainer:
 
           log p(y|x) = (Σ_t log p_t · mask_t) / Σ_t mask_t
 
-        均值聚合以消除长度偏差 (length bias)
+        本模板采用 token 均值聚合，属于长度归一化变体。
+        原始 DPO 是有效 response log probability 的和；两种目标不同。
         =========================================================================
         """
         raise NotImplementedError("[TODO-1] 请实现 _sequence_log_prob()")

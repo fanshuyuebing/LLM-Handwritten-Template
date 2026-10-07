@@ -1,7 +1,7 @@
 """
 GRPO (Group Relative Policy Optimization) — 手撕练习
 =====================================================
-基于 DeepSeek-R1 论文 (2024) 和 TRL GRPOTrainer 的真实工程结构。
+基于 DeepSeekMath 论文 (2024) 的核心目标，保留教学简化。
 
 流程:
   GRPOTrainer
@@ -12,7 +12,7 @@ GRPO (Group Relative Policy Optimization) — 手撕练习
 vs PPO 的关键差异:
   - 不需要 Value Model → 节省显存
   - 用组内相对奖励代替 V(s_t) 估计 advantage
-  - KL 使用 f-divergence 无偏估计: exp(x) - x - 1 ≥ 0
+  - KL 使用非负 k3: exp(x) - x - 1；匹配采样分布时数值无偏
   - advantage 是 per-sequence 标量 (广播到整个 response)
 
 核心手撕项:
@@ -287,11 +287,12 @@ class GRPOTrainer:
         步骤:
           grouped = rewards.view(batch_size, group_size)              # [B, G]
           mu  = grouped.mean(dim=1, keepdim=True)   # [B, 1]
-          std = grouped.std(dim=1, keepdim=True)    # [B, 1]
+          std = grouped.std(dim=1, keepdim=True, correction=0)  # 总体标准差；G=1 不会 NaN
           advantages = ((grouped - mu) / (std + 1e-8)).view(-1)  # [B*G]
 
-        注意: 若一组内所有 reward 相同，std=0，除法会产生 NaN/Inf。
-              用 std + 1e-8 防止数值问题。
+        注意: 本练习明确使用总体标准差 (correction=0)。G=1 或 reward 全相同，
+              std=0、分子也为 0，用 std + 1e-8 后优势为 0。
+              默认的样本标准差在 G=1 时已是 NaN，不能靠加 epsilon 修复。
         =========================================================================
         """
         raise NotImplementedError("[TODO-3] 请实现 _group_advantages()")
@@ -356,16 +357,19 @@ class GRPOTrainer:
         [TODO-6] 请实现 _kl_penalty()
 
         GRPO 使用与 PPO 不同的 KL 估计器:
-            KL(π_ref || π) 的 f-divergence 无偏估计:
+            在固定状态、a ~ π_new 且支撑兼容时，KL(π_new || π_ref) 的无偏数值估计:
               D_KL ≈ exp(log_ratio) - log_ratio - 1
               其中 log_ratio = ref_log_probs - new_log_probs  (= log π_ref/π)
 
-        数学: e^x - x - 1 ≥ 0 ∀x，x=0 时取等，天然非负，更稳定。
-        对比 PPO 的 log(π/π_ref)：PPO 的近似估计在策略差异大时不够准确。
+        数学: e^x - x - 1 ≥ 0 ∀x，x=0 时取等，逐样本非负。
+        PPO 的 sampled log(π_old/π_ref) 在 a ~ π_old 下同样是无偏的 KL 数值估计，
+        但单个值可为负。非负不等于逐样本精确，也不保证更小方差。
+        多轮更新复用 π_old 样本时，此 k3 均值不再严格无偏估计当前策略 KL；
+        数值估计无偏也不代表对固定采样值的自动微分是无偏 KL 梯度。
 
         步骤:
           log_ratio = ref_log_probs - new_log_probs          # [B*G, T_r]
-          kl        = torch.exp(log_ratio) - log_ratio - 1   # [B*G, T_r]
+          kl        = torch.expm1(log_ratio) - log_ratio     # [B*G, T_r]；小 x 更稳定
           # 直接用 action_mask，形状匹配，无需 pad
           amask     = action_mask.float()                    # [B*G, T_r]
           kl_loss   = (kl * amask).sum() / amask.sum().clamp(min=1)

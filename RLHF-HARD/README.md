@@ -93,7 +93,7 @@ python rlhf_env.py
 
 | TODO | 函数 | 核心概念 |
 |------|------|---------|
-| **TODO-1** | `_sequence_log_prob()` | per-token → 序列级均值聚合（消除 length bias） |
+| **TODO-1** | `_sequence_log_prob()` | per-token → token 均值聚合（长度归一化教学变体，改变原 DPO 目标） |
 | **TODO-2** | `_dpo_loss()` | Bradley-Terry：h = β·(logr_chosen - logr_rejected)；L = -log σ(h) |
 | **TODO-3** | `train_step()` | policy + ref 各自算 log_prob → DPO loss → 反向传播 |
 | **TODO-4** | `main()` | 完整训练循环 |
@@ -152,14 +152,20 @@ labels:    [-100, -100, -100, r1, r2, EOS]
 
 PyTorch CrossEntropyLoss 的 `ignore_index=-100` 自动跳过这些位置。
 
-### 5. GRPO 的 f-divergence KL vs PPO 的近似 KL
+### 5. KL 的采样估计与适用条件
 
 | | 公式 | 特性 |
 |---|---|---|
-| PPO | `log π_old - log π_ref` | 近似，策略差异大时不准 |
-| GRPO | `exp(x) - x - 1`，x = log π_ref - log π_new | 无偏估计，天然非负，更稳定 |
+| PPO | `log π_old - log π_ref` | 固定状态下，动作来自 π_old 时无偏估计 KL(old∥ref)；单个值可为负 |
+| GRPO | `expm1(x) - x`，x = log π_ref - log π_new | 固定状态下，动作来自 π_new 时无偏估计 KL(new∥ref)；逐样本非负 |
 
 ---
+
+多轮更新复用 old 样本时，未做重要性校正的 k3 均值不再严格无偏估计当前策略 KL。数值无偏不等于梯度无偏，非负也不意味着估计总是更准确。
+
+GRPO 原论文先按每条回答的有效长度平均，再按回答平均；本模板按全 batch 有效 token 平均，长回答会获得更大权重。组内标准差在本练习中明确采用总体标准差（`correction=0`），避免 G=1 时 NaN。
+
+完整推导与小例子见本地 `/interview`；[数学校验记录](../Interview/MATH_REVIEW.md)列出论文目标和教学变体。
 
 ## 三种算法对比
 

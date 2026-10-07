@@ -311,12 +311,14 @@ class PPOTrainer:
 
         Returns:
             advantages: [B, T_r]
-            returns:    [B, T_r]   = advantages + values
+            returns:    [B, T_r]   = 原始 advantages + values (policy 优势标准化之前)
 
         =========================================================================
         [TODO-5] 请实现 GAE
 
-        真实 TRL 的 GAE 实现考虑了 action_mask:
+        本练习将 response 末尾视为终止，尾部 bootstrap V=0。
+        真正的时间上限截断可 bootstrap 终点 V，需另设 bootstrap/trace mask。
+        固定长度教学递推考虑 action_mask:
           last_gae = 0
           for t = T-1, T-2, ..., 0:
               # 只有有效位置才参与递推
@@ -329,7 +331,8 @@ class PPOTrainer:
           returns    = advantages + values
           # 只对有效位置做标准化
           valid_adv  = advantages[action_mask.bool()]
-          advantages = (advantages - valid_adv.mean()) / (valid_adv.std() + 1e-8)
+          # 有效位置为空时跳过该 batch；仅一个有效 token 时也要保持有限
+          advantages = (advantages - valid_adv.mean()) / (valid_adv.std(correction=0) + 1e-8)
           advantages = advantages * action_mask.float()
         =========================================================================
         """

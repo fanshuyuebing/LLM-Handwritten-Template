@@ -1,0 +1,78 @@
+.interview-page .interview-sidebar{padding-bottom:25px}.interview-nav{display:grid;gap:5px}.interview-nav .category{display:flex;justify-content:space-between;text-align:left;width:100%;border:1px solid transparent;background:transparent;color:#6d7f73;font-size:12px;padding:12px 13px;border-radius:8px}.interview-nav .category span{font:10px ui-monospace,Menlo,monospace;color:#96a59a}.interview-nav .category:hover,.interview-nav .category.active{background:#eaf2e9;border-color:#e0eadf;color:#2a6747}.interview-side-bottom{margin-top:auto}.interview-progress{border:1px solid #e1e9de;background:#f6f9f3;border-radius:10px;padding:15px 13px;font-size:11px;color:#7f8e82}.interview-progress strong{display:block;font-size:19px;color:#3a6950;margin:4px 0}.interview-progress .progress-track{margin:13px 0 9px}.interview-progress #interviewProgress{height:100%;background:#56a270;width:0;border-radius:10px}.interview-progress p{font-size:10px;margin:0}.back-workbench{display:block;margin-top:22px;text-decoration:none;font-size:11px;padding:9px 5px;color:#5f8069}.interview-main{padding-top:34px}.interview-intro{display:flex;justify-content:space-between;gap:20px;align-items:center;background:linear-gradient(120deg,#fff,#f3f8f2);border:1px solid #e4eae0;border-radius:16px;padding:32px 38px;margin-bottom:22px;overflow:hidden}.interview-intro h1{font-size:35px;margin:12px 0 9px}.interview-intro p{font-size:12px;color:#738578;margin:0;max-width:580px}.intro-meta{display:flex;gap:9px;margin-top:18px}.intro-meta span{border:1px solid #dfe9dc;background:#fff;color:#668473;font-size:10px;padding:5px 9px;border-radius:20px}.intro-graphic{height:138px;min-width:215px;position:relative;display:grid;place-items:center}.math-glyph{font:110px Georgia,serif;color:#bfd6c4;opacity:.8;transform:rotate(-10deg)}.math-eq{position:absolute;bottom:8px;right:0;font:13px ui-monospace,Menlo,monospace;color:#91ae98;letter-spacing:2px}.interview-controls{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;margin-bottom:24px}.search-wrap{display:flex;align-items:center;gap:8px;min-width:180px;flex:1;border:1px solid #dfe7dd;border-radius:7px;padding:8px 12px;color:#8da298}.search-wrap span{font-size:21px;line-height:16px}.search-wrap:focus-within{border-color:#80a98b;box-shadow:0 0 0 3px #dceadd}.search-wrap input{width:100%;font-size:12px;border:0;outline:0;background:transparent;color:#314c39}.mode-control{display:flex;background:#edf2eb;padding:3px;border-radius:7px;flex-shrink:0}.mode-control button{font-size:10px;background:transparent;border:0;color:#7a887d;padding:8px 11px}.mode-control button.selected{background:#fff;color:#356a49;box-shadow:0 1px 4px #223b2611}.random-button{font-size:10px;color:#527461;white-space:nowrap}.interview-results{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:13px}.interview-results>div{display:flex;align-items:center;gap:9px}.interview-results #resultTitle{font-size:15px;font-weight:650;color:#364d3e}.interview-results #resultCount{font-size:10px;color:#87998a}.interview-results p{font-size:10px;color:#98a39a;margin:0}.question-list{display:grid;gap:12px}.question-card{border:1px solid #e1e8df;border-radius:11px;background:#fff;box-shadow:var(--shadow);overflow:hidden}.question-head{width:100%;display:flex;align-items:center;gap:14px;text-align:left;padding:20px 22px;background:transparent;border:0;border-radius:0;color:inherit}.question-head:hover{background:#f9fbf8;border-color:transparent}.question-number{font:12px ui-monospace,Menlo,monospace;color:#a6b4a7;min-width:24px}.question-main{min-width:0;flex:1}.question-tags{display:flex;gap:7px;margin-bottom:8px}.question-tags span{font-size:9px;padding:2px 6px;border-radius:4px;background:#edf5ee;color:#4d8a60}.question-tags span+span{background:#f4f0e8;color:#9f8252}.question-main h2{font-size:16px;font-weight:620;color:#2f4938;margin:0 0 4px}.question-main p{font-size:11px;color:#7f8c81;margin:0;line-height:1.7}.question-chevron{font-size:18px;color:#9dae9e;transition:transform .15s}.question-card.open .question-chevron{transform:rotate(90deg)}.question-body{border-top:1px solid #e9eee7;padding:21px 24px 23px}.question-body h3{font-size:11px;color:#4b7254;letter-spacing:.6px;margin:20px 0 8px}.question-body h3:first-child{margin-top:0}.question-body p,.question-body li{font-size:12px;color:#566c5d;line-height:1.85}.question-body p{margin:0}.question-body ol{margin:0;padding-left:20px}.question-body li{padding-left:2px;margin:6px 0}.hint-panel{background:#f7f8ef;border:1px solid #e9edd8;border-left:3px solid #b3c287;border-radius:5px;padding:12px 15px;font-size:12px;color:#687960;margin-bottom:18px}.hint-panel strong{color:#738654}.formula{background:#1f2d3a;border:1px solid #334659;color:#e0ecdf;border-radius:8px;padding:17px 19px;overflow:auto;white-space:pre-wrap;font:13px/1.9 ui-monospace,SFMono-Regular,Menlo,monospace;margin:10px 0 15px}.answer-toggle{background:#e8f2e9;border-color:#d5e8d8;color:#386e4c;font-size:11px;padding:8px 12px}.answer-panel{margin-top:15px}.answer-panel[hidden]{display:none}.question-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:21px;padding-top:16px;border-top:1px solid #edf0ea}.question-actions button,.question-actions a{font-size:10px;padding:8px 11px;text-decoration:none;border-radius:6px}.question-actions a{border:1px solid #d9e7da;background:#f7faf6;color:#467555}.question-actions .mastered{margin-left:auto}.question-actions .mastered.active{background:#e7f2e9;border-color:#acd1b4;color:#34704b}.question-actions .source-link{background:transparent;border:0;color:#97a49a}.empty-state{text-align:center;padding:45px;background:white;border:1px solid var(--line);border-radius:10px;color:#89988b;font-size:12px}.interview-main footer{margin-top:24px}.interview-main footer a{color:#658770;text-decoration:none}.interview-focus{outline:3px solid #bdd9c2;outline-offset:3px}@media(max-width:1100px){.interview-controls{flex-wrap:wrap}.mode-control{order:3}.random-button{order:2}.intro-graphic{min-width:130px}.math-glyph{font-size:85px}.interview-intro{padding:26px}}@media(max-width:720px){.interview-sidebar .side-section,.interview-side-bottom{display:none}.interview-sidebar{padding-bottom:12px}.interview-nav{display:flex;overflow:auto;margin-top:16px;gap:5px}.interview-nav #categories{display:flex;gap:5px}.interview-nav .category{flex-shrink:0;width:auto;padding:7px 10px;font-size:10px}.interview-main{padding:19px 15px 0}.interview-intro{padding:22px;margin-bottom:16px}.interview-intro h1{font-size:27px}.interview-intro p{font-size:11px}.intro-graphic{display:none}.intro-meta{margin-top:14px}.intro-meta span{font-size:9px}.interview-controls{padding:8px;gap:8px}.search-wrap{flex-basis:100%}.mode-control{order:2;flex:1}.mode-control button{flex:1;font-size:9px;padding:8px 5px}.random-button{order:3;font-size:9px}.interview-results p{display:none}.question-head{padding:16px 13px;gap:8px}.question-main h2{font-size:14px}.question-main p{font-size:10px}.question-body{padding:17px 15px}.formula{font-size:11px}.question-actions .mastered{margin-left:0}}
+.lesson-path {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding-bottom: 22px; border-bottom: 1px solid #e5ece4;
+  color: #54735c; font-size: 11px; letter-spacing: .3px;
+}
+.question-card { scroll-margin-top: 24px; }
+.question-body { padding: 26px 30px 24px; }
+.question-main h2 { font-size: 18px; }
+.question-main p { font-size: 12px; }
+.lesson-stage { margin-top: 26px; min-width: 0; }
+.question-body .lesson-stage h3 {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 16px;
+  font-size: 16px; font-weight: 620; color: #304c3b; letter-spacing: 0;
+}
+.stage-number {
+  display: inline-grid; place-items: center; flex-shrink: 0;
+  width: 29px; height: 29px; background: #eaf2e9; color: #477555;
+  border-radius: 8px; font: 11px ui-monospace, Menlo, monospace;
+}
+.question-body .principle-copy { font-size: 14px; color: #40594a; line-height: 1.95; }
+.symbol-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 18px 0; }
+.symbol-grid > div { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: #f6f8f5; border-radius: 8px; min-width: 0; }
+.symbol-grid dt { color: #365f43; flex-shrink: 0; max-width: 48%; overflow-x: auto; }
+.symbol-grid dd { margin: 0; color: #738175; font-size: 11px; line-height: 1.7; }
+.math-inline .katex { font-size: 1.05em; }
+.conditions { border-left: 3px solid #c7d7c5; padding: 2px 0 2px 16px; }
+.question-body h4 { color: #56705b; font-size: 12px; margin: 0 0 10px; font-weight: 650; }
+.conditions ul { margin: 0; padding-left: 17px; }
+.question-body .conditions li { font-size: 11px; line-height: 1.85; color: #778174; }
+.stage-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.stage-note { color: #8d9b8d; font-size: 10px; }
+.core-formulas { background: #f4f8f3; border: 1px solid #dfe8dc; border-radius: 11px; padding: 18px 21px; margin-bottom: 24px; min-width: 0; }
+.core-formulas h4 { color: #6f856d; text-transform: uppercase; letter-spacing: 1px; font-size: 10px; }
+.math-block { overflow-x: auto; overflow-y: hidden; padding: 10px 2px; color: #263d32; max-width: 100%; }
+.math-block .katex-display { margin: 0; text-align: left; }
+.math-block .katex-display > .katex { text-align: left; font-size: 1.08em; }
+.math-fallback { white-space: pre-wrap; font-size: 12px; }
+.question-body .derivation-steps { list-style: none; padding: 0; margin: 0 0 21px; }
+.question-body .derivation-steps > li { display: flex; align-items: flex-start; gap: 13px; margin: 13px 0; padding: 0; }
+.derivation-number { width: 22px; height: 22px; display: inline-grid; place-items: center; background: #f0f4ed; color: #789176; font: 10px ui-monospace, Menlo, monospace; border-radius: 50%; flex-shrink: 0; margin-top: 4px; }
+.derivation-steps > li > div { min-width: 0; flex: 1; }
+.question-body .derivation-steps p { font-size: 13px; line-height: 1.95; }
+.worked-example { padding: 17px 19px; border-radius: 9px; border: 1px solid #eee5cf; background: #faf8f1; margin-bottom: 19px; }
+.worked-example > span { display: block; font-size: 10px; font-weight: 650; color: #987f4f; margin-bottom: 7px; }
+.question-body .worked-example p { font-size: 12px; color: #75664c; line-height: 1.9; }
+.continue-code { background: #edf4e9; border: 1px solid #dbe6d5; border-radius: 7px; color: #486e46; font-size: 11px; padding: 10px 14px; }
+.continue-code span { margin-left: 9px; }
+.coding-stage { border: 1px solid #dee6db; border-radius: 11px; background: #fcfdfb; overflow: hidden; scroll-margin-top: 24px; }
+.coding-stage summary { display: flex; align-items: center; gap: 12px; padding: 18px 20px; cursor: pointer; list-style: none; color: #3b5843; font-size: 14px; font-weight: 600; }
+.coding-stage summary::-webkit-details-marker { display: none; }
+.coding-stage summary small { display: block; margin-top: 4px; color: #8a9988; font-size: 10px; font-weight: 400; }
+.coding-stage .coding-chevron { margin-left: auto; color: #8da086; font-size: 16px; }
+.coding-stage[open] .coding-chevron { transform: rotate(45deg); }
+.coding-stage[open] summary { border-bottom: 1px solid #e7ede3; }
+.coding-content { padding: 19px 22px 24px; }
+.coding-content h4:not(:first-child) { margin-top: 21px; }
+.acceptance-checks { padding-left: 18px; margin: 0; }
+.question-body .acceptance-checks li { font-size: 12px; line-height: 1.9; }
+.coding-actions { margin-top: 20px; }
+.code-link { display: inline-block; padding: 11px 15px; border-radius: 7px; color: #fff; background: #356448; text-decoration: none; font-size: 11px; }
+.code-link:hover { background: #284e37; }
+.question-body .practice-note { font-size: 11px; color: #8b9788; }
+.question-body .independent-prompt { font-size: 12px; padding: 14px 16px; border: 1px dashed #d5dfd0; border-radius: 8px; color: #81907c; }
+.question-body [hidden] { display: none; }
+.question-body .answer-panel { margin-top: 5px; }
+.question-body .question-actions { margin-top: 22px; }
+.lesson-stage button:focus-visible, .coding-stage summary:focus-visible, .code-link:focus-visible { outline: 3px solid #aac6a7; outline-offset: 3px; }
+@media (max-width: 720px) {
+  .question-body { padding: 20px 17px; }
+  .lesson-path { font-size: 9px; gap: 7px; }
+  .question-body .lesson-stage h3 { font-size: 14px; }
+  .symbol-grid { grid-template-columns: 1fr; }
+  .question-body .principle-copy { font-size: 13px; }
+  .core-formulas { padding: 15px 12px; }
+  .math-block .katex-display > .katex { font-size: .95em; }
+  .coding-stage summary, .coding-content { padding: 16px; }
+}

@@ -1,1 +1,7 @@
 __pycache__/
+.venv/
+.python/
+wheelhouse/
+.study-backups/
+*.py.tmp
+.DS_Store

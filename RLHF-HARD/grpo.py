@@ -1,7 +1,7 @@
 """
 GRPO (Group Relative Policy Optimization) — 手撕练习 [HARD]
 ============================================================
-基于 DeepSeek-R1 论文 (2024) 和 TRL GRPOTrainer。
+基于 DeepSeekMath 论文 (2024) 的核心目标，保留教学简化。
 
 流程:
   GRPOTrainer
@@ -12,7 +12,7 @@ GRPO (Group Relative Policy Optimization) — 手撕练习 [HARD]
 vs PPO:
   - 无 Value Model，用组内相对奖励估计 advantage
   - advantage 是 per-sequence 标量，广播到 response 所有 token
-  - KL: f-divergence 无偏估计 exp(x) - x - 1，而非 PPO 的近似
+  - KL: 非负 k3=exp(x)-x-1；无偏性取决于采样分布
 
 核心手撕项:
   [TODO-A]  rlhf_env.py ppo_collate_fn
@@ -180,7 +180,8 @@ class GRPOTrainer:
           grouped = rewards.view(B, G)
           A_i = (r_i - μ_group) / (σ_group + ε)
 
-        避免 std=0 的数值问题
+        本练习约定总体标准差 σ²=Σ(r_i−μ)²/G (correction=0)。
+        G=1 / 组内全相同时优势为 0；epsilon 不能修复样本标准差产生的 NaN。
         =========================================================================
         """
         raise NotImplementedError("[TODO-3] 请实现 _group_advantages()")
@@ -227,10 +228,13 @@ class GRPOTrainer:
         =========================================================================
         [TODO-6] 请实现 _kl_penalty()
 
-        f-divergence 无偏估计 (x = log π_ref - log π_new):
+        固定状态、a ~ π_new 时的 KL(π_new || π_ref) 无偏数值估计:
+          x = log π_ref - log π_new
           KL ≈ e^x - x - 1  ≥ 0,  x=0 时取等
 
-        对比 PPO 的近似 KL = log(π/π_ref)，此估计在策略差异大时更准确
+        多轮更新复用 π_old 样本时不再严格无偏；数值无偏不等于梯度无偏。
+        sampled log-ratio 在匹配的采样分布下同样无偏，但逐样本可为负。
+        小 x 的 exp(x)−1 可用 expm1(x) 改善数值抵消。
         =========================================================================
         """
         raise NotImplementedError("[TODO-6] 请实现 _kl_penalty()")

@@ -2,7 +2,23 @@
 
 从零实现 Transformer 和三种主流 RLHF 算法，对齐 HuggingFace TRL / Llama / DeepSeek OpenRLHF 官方做法。
 
+## 启动学习工作台
+
+首次克隆后，在项目根目录创建 Python 3.12 环境并安装依赖（这一步需要联网）：
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/python -m pip install -r requirements.lock.txt
+./start.sh
+```
+
+环境已配置时，执行 `./start.sh`，然后在浏览器打开 http://127.0.0.1:8765 。支持编辑、保存、运行练习和学习笔记。详见 [离线使用说明](OFFLINE.md)。
+
 ---
+
+## 面试手撕与数学推导
+
+新增 [离线面试题库](Interview/README.md)：34 道题，涵盖 PPO、DPO、GRPO、OPD（On-Policy Distillation）、Transformer、训练与推理工程题。启动工作台后点击左侧「面试手撕与推导」，或直接打开 http://127.0.0.1:8765/interview 。每题按「原理与符号 → 数学推导与小例子 → 手撕代码与自检」学习；EASY 默认展示推导，HARD 可先闭卷推导再核对，代码跳转保持同难度。公式引擎和字体全部本地保存；OPD 另有独立手撕模板。数学修正与实现约定见 [校验记录](Interview/MATH_REVIEW.md)。
 
 ## 仓库结构
 
@@ -22,11 +38,20 @@
 │   ├── grpo.py
 │   └── README.md
 │
-└── RLHF-HARD/            # PPO · DPO · GRPO 手撕（只有公式和数据流）
-    ├── rlhf_env.py
-    ├── ppo.py
-    ├── dpo.py
-    ├── grpo.py
+├── RLHF-HARD/            # PPO · DPO · GRPO 手撕（只有公式和数据流）
+│   ├── rlhf_env.py
+│   ├── ppo.py
+│   ├── dpo.py
+│   ├── grpo.py
+│   └── README.md
+│
+├── Interview-EASY/       # OPD 手撕（提示含答案）
+│   ├── opd.py
+│   └── README.md
+├── Interview-HARD/       # OPD 手撕（仅公式与数据流）
+│   ├── opd.py
+│   └── README.md
+└── Interview/            # 面试推导题库说明；交互页面在 web/interview.html
     └── README.md
 ```
 

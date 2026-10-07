@@ -163,8 +163,9 @@ class DPOTrainer:
         =========================================================================
         [TODO-1] 请实现 _sequence_log_prob()
 
-        DPO 原论文用求和，但实践中通常用『对有效 token 取均值』以避免
-        长序列 log prob 天然偏小的偏差 (length bias)。
+        DPO 原论文用有效 response token 的 log probability 求和。
+        本模板采用 token 均值，属于长度归一化教学变体，会改变 DPO 目标；
+        均值不是序列 log probability，不能声称通用地消除了长度偏差。
 
         做法:
             mask_f = loss_mask.float()                           # [B, T-1]
